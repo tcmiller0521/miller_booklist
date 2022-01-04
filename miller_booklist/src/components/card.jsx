@@ -1,13 +1,17 @@
 import Container from 'react-bootstrap/Container'
 import Card from 'react-bootstrap/Card'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectContent } from '../state/contentSlice';
 
-const BookCard = ({ content }) => {
+const BookCard = () => {
 
-    console.log(content)
+const dispatch = useDispatch();
+const bookInfo = useSelector(selectContent)  
+
     return (
         <>
             <Container fluid className="m-0 p-0">
-                {content.map((BookInfo, i) => (
+                {bookInfo.map((BookInfo, i) => (
                     <Card key={i} style={{ width: '18rem' }}>
                         <Card.Body>
                             <Card.Title>{BookInfo.title}</Card.Title>

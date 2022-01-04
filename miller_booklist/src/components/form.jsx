@@ -2,8 +2,12 @@ import Container from 'react-bootstrap/Container'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addContent, selectContent } from '../state/contentSlice';
 
-const BookForm = ({content, setContent}) => {
+const BookForm =  () => {
+    const dispatch = useDispatch();
+    const content = useSelector(selectContent)
     const [response, setResponse] = useState()
 
     const updateField = (e) => {
@@ -16,12 +20,9 @@ const BookForm = ({content, setContent}) => {
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-         let updateContentArr = [
-             response, 
-             ...content];
             console.log(response)
             if (response.title) {
-                setContent(updateContentArr)
+                dispatch(addContent(response))
                 setResponse({})
             }
     }
