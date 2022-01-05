@@ -4,22 +4,21 @@ import Books from '../models/books.js'
 export const getBooks = async (req, res) => {
     try {
         console.log("Books Gotten")
-        res.send('/books/get')
-    }   catch (error) {
-        next(error)
+        const booksList = await Books.find();
+
+        res.status(200).json({ booksList })
+    } catch (e) {
+        res.status(400).json({ message: e })
     }
 }
 
 export const addBook = async (req, res) => {
+    const book = req.body;
+    const newBook = new Books({ ...book })
     try {
-        console.log(req.body)
-        console.log("Book Added")
-
-        const newBooks = new Books(req.body.newBooks)
-        res.status(201).json({
-            newBooks
-        })
-    }   catch (error) {
-        next(error)
+        await newBook.save();
+        res.status(201).json(newBook)
+    } catch (e) {
+        res.status(400).json({ message: e })
     }
 }

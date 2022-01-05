@@ -13,7 +13,7 @@ app.use(cors());
 
 app.use('/books', bookRoutes)
 
-mongoose.connect('mongodb://localhost', function (err) {
+mongoose.connect('mongodb://localhost:27017', function (err) {
     if (err) throw err;
     console.log('connected to db')
 })
