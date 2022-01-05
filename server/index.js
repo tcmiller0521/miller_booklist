@@ -13,4 +13,9 @@ app.use(cors());
 
 app.use('/books', bookRoutes)
 
+mongoose.connect('mongodb://localhost', function (err) {
+    if (err) throw err;
+    console.log('connected to db')
+})
+
 app.listen(PORT, () => console.log(`server is running on ${PORT}`))

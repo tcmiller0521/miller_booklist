@@ -1,4 +1,3 @@
-import mongoose from 'mongoose'
 
 import Books from '../models/books.js'
 
