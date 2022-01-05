@@ -12,9 +12,11 @@ app.use(cors());
 app.listen(PORT, () => console.log(`server is running on ${PORT}`))
 
 app.get('/get', (req, res) => {
+    console.log("successful get")
     res.send("Get displayed")
 })
 
 app.post('/post', (req, res) => {
+    console.log("successful post")
     res.send("Post saved")
 })
